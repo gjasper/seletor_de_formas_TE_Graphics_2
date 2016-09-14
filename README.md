@@ -1,0 +1,2 @@
+# seletor_de_formas_TE_Graphics_2
+ANdersp
