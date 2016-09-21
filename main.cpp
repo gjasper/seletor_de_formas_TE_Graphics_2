@@ -109,7 +109,7 @@ void display() {
 }
 
 
-void menu()
+void menuFx()
 {
         cout << "Escolha uma opcao a baixo:\n\n";
         cout << "[F1] displayLinhaVertical.\n";
@@ -119,6 +119,59 @@ void menu()
 		cout << "[F5] displayQuadrado.\n";
         cout << "[F6] displayCirculoo.\n";
         cout << "[F7] Finalizar o programa.\n\n";
+
+}
+
+int window;
+int myMenu;
+int mySubMenu;
+
+void menu(int op){
+    switch (op) {
+		case 1:
+            escolha = 1;
+            break;
+		case 2:
+            escolha = 2;
+            break;
+		case 3:
+            escolha = 3;
+            break;
+		case 4:
+            escolha = 4;
+            break;
+		case 5:
+            escolha = 5;
+            break;
+		case 6:
+            escolha = 6;
+            break;
+        case 7:
+            glutDestroyWindow(window);
+            exit(0);
+            break;
+
+        default:
+            break;
+    }
+    glutPostRedisplay();
+}
+
+void createMenu(){
+    mySubMenu = glutCreateMenu(menu);
+
+    glutAddMenuEntry("Opcao 1", 1);
+    glutAddMenuEntry("Opcao 2", 2);
+    glutAddMenuEntry("Opcao 3", 3);
+    glutAddMenuEntry("Opcao 4", 4);
+	glutAddMenuEntry("Opcao 5", 5);
+    glutAddMenuEntry("Opcao 6", 6);
+    glutAddMenuEntry("Sair", 0);
+
+    myMenu = glutCreateMenu(menu);
+    glutAddSubMenu("Menu 1", mySubMenu);
+
+    glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 }
 
@@ -174,7 +227,8 @@ int main(int argc, char** argv) {
     glutInitWindowPosition(0, 0);
     init();
 
-    menu();
+    menuFx();
+    createMenu();
 
     glutDisplayFunc(display);                       // Registra o listener que exibir imagens
 	glutSpecialFunc(specialKey);
